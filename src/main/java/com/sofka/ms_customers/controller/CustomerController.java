@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -18,6 +19,13 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<ApiResponse<CustomerDTO>> createCustomer(@RequestBody CustomerDTO customerDTO) {
         return ResponseEntity.ok(new ApiResponse<>("Cliente creado con éxito", customerService.createCustomer(customerDTO)));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerDTO> updateCustomer(@PathVariable UUID id, @RequestBody CustomerDTO customerDTO) {
+        customerDTO.setCustomerId(id);
+        CustomerDTO updatedCustomer = customerService.updateCustomer(customerDTO);
+        return ResponseEntity.ok(updatedCustomer);
     }
 
     @GetMapping("/{identification}")
@@ -31,7 +39,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{customerId}")
-    public ResponseEntity<ApiResponse<Void>> deleteCustomer(@PathVariable String customerId) {
+    public ResponseEntity<ApiResponse<Void>> deleteCustomer(@PathVariable UUID customerId) {
         customerService.deleteCustomer(customerId);
         return ResponseEntity.ok(new ApiResponse<>("Cliente eliminado", null));
     }

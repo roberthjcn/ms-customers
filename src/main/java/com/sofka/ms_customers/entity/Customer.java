@@ -20,7 +20,7 @@ public class Customer {
     private UUID customerId;
 
     private String password;
-    private String status;
+    private Boolean status;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")

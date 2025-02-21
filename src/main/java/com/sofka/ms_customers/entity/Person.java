@@ -1,5 +1,6 @@
 package com.sofka.ms_customers.entity;
 
+import com.sofka.ms_customers.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,8 @@ public class Person {
     private UUID id;
 
     private String name;
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     private int age;
     private String identification;
     private String address;
