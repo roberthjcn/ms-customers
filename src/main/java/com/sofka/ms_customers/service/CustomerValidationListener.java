@@ -24,7 +24,6 @@ public class CustomerValidationListener {
     public void validateCustomer(String customerId) {
         UUID uuid = UUID.fromString(customerId);
         Optional<Customer> exists = customerRepository.findById(uuid);
-        System.out.println("cys: "+exists.isEmpty());
         rabbitTemplate.convertAndSend("customer.validation.response", customerId + ":" + exists.isEmpty());
     }
 }

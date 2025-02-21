@@ -38,18 +38,12 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	// JUnit 5 (Jupiter)
-	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
-	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+
 
 	// Mockito
-	testImplementation 'org.mockito:mockito-core:5.7.0'
-	testImplementation 'org.mockito:mockito-junit-jupiter:5.7.0'
 
-	// Spring Boot test (con JUnit 5)
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'junit', module: 'junit' // Evita conflictos con JUnit 4
-	}
 
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
