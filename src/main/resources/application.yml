@@ -1,8 +1,10 @@
 server:
   port: 8081
 spring:
+  application:
+    name: ms-customers
   datasource:
-    url: jdbc:postgresql://localhost:5432/sofka
+    url: jdbc:postgresql://localhost:5432/bank
     username: postgres
     password: Passw0rd.
     driver-class-name: org.postgresql.Driver
@@ -18,6 +20,22 @@ spring:
     port: 5672
     username: admin
     password: admin
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 2000
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  springdoc:
+    swagger-ui:
+      enabled: true
+    api-docs:
+      title: Customer API
+      description: API para gestionar clientes
+      version: 1.0.0
 
 eureka:
   client:

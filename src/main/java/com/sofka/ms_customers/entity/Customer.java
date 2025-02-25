@@ -14,15 +14,18 @@ import java.util.UUID;
 @Table(name = "customer")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID customerId;
+@PrimaryKeyJoinColumn(name = "id")
+public class Customer extends Person {
+    @Column(name = "customer_id", unique = true, nullable = false)
+    private UUID customerId = UUID.randomUUID();
 
     private String password;
     private Boolean status;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person;
+    public Customer(UUID customerId, String password, Boolean status, Person person) {
+        super(person.getId(), person.getName(), person.getGender(), person.getAge(), person.getIdentification(), person.getAddress(), person.getPhone());
+        this.customerId = customerId;
+        this.password = password;
+        this.status = status;
+    }
 }
